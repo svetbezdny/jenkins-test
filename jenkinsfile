@@ -46,7 +46,7 @@ pipeline {
 
                 script {
                     def browsers = ['Safari', 'Firefox', 'Chromium']
-                    for (int i = 0; i <= browsers.size(); i++) {
+                    for (int i = 0; i < browsers.size(); i++) {
                         echo "Acceptance testing in ${browsers[i]} browser"
                         sleep 1
                     }
@@ -56,14 +56,18 @@ pipeline {
     }
     post {
         success {
-            mail to: 'adm@example.ru'
-            subject: "SUCCESS JOB ${currentBuild.fullDisplayName}"
-            body: "All is good. ${env.BUILD_URL}"
+            steps {
+                mail to: 'adm@example.ru'
+                subject: "SUCCESS JOB ${currentBuild.fullDisplayName}"
+                body: "All is good. ${env.BUILD_URL}"
+            }
         }
         failure {
-            mail to: 'adm@example.ru'
-            subject: "FAILURE JOB ${currentBuild.fullDisplayName}"
-            body: "I have bad news. We have a problem. ${env.BUILD_URL}"
+            steps {
+                mail to: 'adm@example.ru'
+                subject: "FAILURE JOB ${currentBuild.fullDisplayName}"
+                body: "I have bad news. We have a problem. ${env.BUILD_URL}"
+            }
         }
     }
 }
