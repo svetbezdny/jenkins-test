@@ -1,7 +1,7 @@
 pipeline {
     agent any
     options {
-        (time: 300, unit: 'SECONDS')
+        timeout(time: 300, unit: 'SECONDS')
     }
     stages {
         stage('Checkout git') {
@@ -40,7 +40,7 @@ pipeline {
                 sleep 2
             }
         }
-        stage('Acceptance test'){
+        stage('Acceptance test') {
             steps {
                 echo 'Run Acceptance test'
 
