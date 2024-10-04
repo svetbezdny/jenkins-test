@@ -56,18 +56,14 @@ pipeline {
     }
     post {
         success {
-            steps {
-                mail to: 'adm@example.ru'
-                subject: "SUCCESS JOB ${currentBuild.fullDisplayName}"
-                body: "All is good. ${env.BUILD_URL}"
-            }
+            mail to: 'adm@example.ru',
+            subject: "SUCCESS JOB ${currentBuild.fullDisplayName}",
+            body: "All is good. ${env.BUILD_URL}"
         }
         failure {
-            steps {
-                mail to: 'adm@example.ru'
-                subject: "FAILURE JOB ${currentBuild.fullDisplayName}"
-                body: "I have bad news. We have a problem. ${env.BUILD_URL}"
-            }
+            mail to: 'adm@example.ru',
+            subject: "FAILURE JOB ${currentBuild.fullDisplayName}",
+            body: "I have bad news. We have a problem. ${env.BUILD_URL}"
         }
     }
 }
